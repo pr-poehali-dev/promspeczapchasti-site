@@ -38,9 +38,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-            <div className="text-center lg:text-left">
+        <div className="container mx-auto px-4 py-5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-center md:text-left">
               <h1 className="text-2xl md:text-3xl font-bold text-primary">
                 ООО "ПРОМСПЕЦЗАПЧАСТЬ"
               </h1>
@@ -48,79 +48,70 @@ const Index = () => {
                 Поставка запчастей и ремонт спецтехники
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 text-sm">
+            <Button 
+              size="lg" 
+              className="bg-accent hover:bg-accent/90 text-white font-semibold text-lg px-6"
+              asChild
+            >
+              <a href="tel:+79890111000">
+                <Icon name="Phone" className="mr-2" size={20} />
+                +7 989 0 111 000
+              </a>
+            </Button>
+          </div>
+        </div>
+        <div className="bg-muted/30 border-t">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm">
               {addresses.map((location, index) => (
                 <a 
                   key={index}
                   href={`https://yandex.ru/maps/?text=${encodeURIComponent(location.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors group"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
                 >
                   <Icon name="MapPin" size={16} className="flex-shrink-0 group-hover:text-accent" />
-                  <span className="text-xs hidden xl:inline">{location.title}:</span>
-                  <span className="underline decoration-dotted">{location.address}</span>
+                  <div className="text-center sm:text-left">
+                    <div className="font-medium text-foreground text-xs">{location.title}</div>
+                    <div className="text-xs">{location.address}</div>
+                  </div>
                 </a>
               ))}
-            </div>
-            <div className="flex items-center gap-3">
-              <Button 
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-lg"
-                asChild
-              >
-                <a href="tel:+79890111000">
-                  <Icon name="Phone" className="mr-2" size={20} />
-                  +7 989 0 111 000
-                </a>
-              </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
           <img 
-            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&h=900&fit=crop" 
+            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=2400&h=1200&fit=crop&q=80" 
             alt="Экскаватор" 
             className="w-full h-full object-cover"
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6 animate-fade-in backdrop-blur-sm bg-white/80 p-8 rounded-lg">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                Профессиональное обслуживание дорожно-строительной техники
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                ООО "ПРОМСПЕЦЗАПЧАСТЬ" осуществляет поставку запасных частей и выполняет все виды ремонтных работ дорожно-строительной и строительной спецтехники от ведущих мировых марок.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {brands.slice(0, 10).map((brand) => (
-                  <span 
-                    key={brand} 
-                    className="px-3 py-1 bg-white rounded-full text-sm font-medium text-foreground border shadow-sm"
-                  >
-                    {brand}
-                  </span>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                и многие другие марки...
-              </p>
+          <div className="max-w-3xl backdrop-blur-sm bg-white/90 p-10 rounded-xl shadow-xl">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+              Профессиональное обслуживание дорожно-строительной техники
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              ООО "ПРОМСПЕЦЗАПЧАСТЬ" осуществляет поставку запасных частей и выполняет все виды ремонтных работ дорожно-строительной и строительной спецтехники от ведущих мировых марок.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {brands.slice(0, 10).map((brand) => (
+                <span 
+                  key={brand} 
+                  className="px-3 py-1 bg-white rounded-full text-sm font-medium text-foreground border shadow-sm"
+                >
+                  {brand}
+                </span>
+              ))}
             </div>
-            
-            <div className="relative">
-              <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center backdrop-blur-sm bg-white/60">
-                <div className="text-center p-8">
-                  <Icon name="Truck" size={120} className="text-primary/40 mx-auto mb-4" />
-                  <p className="text-muted-foreground">
-                    Профессиональное оборудование для ремонта спецтехники
-                  </p>
-                </div>
-              </div>
-            </div>
+            <p className="text-sm text-muted-foreground">
+              и многие другие марки...
+            </p>
           </div>
         </div>
       </section>
