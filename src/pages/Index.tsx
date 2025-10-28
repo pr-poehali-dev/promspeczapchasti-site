@@ -38,29 +38,29 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-white shadow-lg sticky top-0 z-50 border-b">
-        <div className="container mx-auto px-4 py-5">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="container mx-auto px-4 py-3 md:py-5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-6">
             <div className="text-center md:text-left">
-              <h1 className="text-2xl md:text-3xl font-bold text-primary">
+              <h1 className="text-xl md:text-3xl font-bold text-primary">
                 ООО "ПРОМСПЕЦЗАПЧАСТЬ"
               </h1>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-xs md:text-sm text-muted-foreground mt-0.5 md:mt-1">
                 Поставка запчастей и ремонт спецтехники
               </p>
             </div>
             <Button 
-              size="lg" 
-              className="bg-accent hover:bg-accent/90 text-white font-semibold text-lg px-6"
+              size="default"
+              className="bg-accent hover:bg-accent/90 text-white font-semibold text-base md:text-lg px-4 md:px-6 w-full md:w-auto"
               asChild
             >
               <a href="tel:+79890111000">
-                <Icon name="Phone" className="mr-2" size={20} />
+                <Icon name="Phone" className="mr-2" size={18} />
                 +7 989 0 111 000
               </a>
             </Button>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-muted/40 to-muted/20 border-t">
+        <div className="bg-gradient-to-r from-muted/40 to-muted/20 border-t hidden md:block">
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
               {addresses.map((location, index) => (
@@ -83,7 +83,7 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-10 md:py-20 bg-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <img 
             src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=2400&h=1200&fit=crop&q=80" 
@@ -92,24 +92,24 @@ const Index = () => {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl backdrop-blur-sm bg-white/90 p-10 rounded-xl shadow-xl">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+          <div className="max-w-3xl backdrop-blur-sm bg-white/90 p-6 md:p-10 rounded-xl shadow-xl">
+            <h2 className="text-2xl md:text-5xl font-bold text-foreground leading-tight mb-4 md:mb-6">
               Профессиональное обслуживание дорожно-строительной техники
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-sm md:text-lg text-muted-foreground leading-relaxed mb-4 md:mb-6">
               ООО "ПРОМСПЕЦЗАПЧАСТЬ" осуществляет поставку запасных частей и выполняет все виды ремонтных работ дорожно-строительной и строительной спецтехники от ведущих мировых марок.
             </p>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-3 md:mb-4">
               {brands.slice(0, 10).map((brand) => (
                 <span 
                   key={brand} 
-                  className="px-3 py-1 bg-white rounded-full text-sm font-medium text-foreground border shadow-sm"
+                  className="px-2 md:px-3 py-1 bg-white rounded-full text-xs md:text-sm font-medium text-foreground border shadow-sm"
                 >
                   {brand}
                 </span>
               ))}
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs md:text-sm text-muted-foreground">
               и многие другие марки...
             </p>
           </div>
@@ -199,56 +199,58 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-slate-700 text-white py-12">
+      <footer className="bg-slate-700 text-white py-8 md:py-12">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="flex flex-col gap-6 md:gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
                 ООО "ПРОМСПЕЦЗАПЧАСТЬ"
               </h3>
-              <div className="space-y-3 text-white/90">
+              <div className="space-y-2 md:space-y-3 text-white/90">
                 {addresses.map((location, index) => (
                   <div key={index} className="flex items-start gap-2">
-                    <Icon name="MapPin" size={16} className="flex-shrink-0 mt-0.5 text-accent" />
+                    <Icon name="MapPin" size={14} className="flex-shrink-0 mt-0.5 text-accent md:w-4 md:h-4" />
                     <div>
-                      <div className="font-medium text-sm">{location.title}</div>
+                      <div className="font-medium text-xs md:text-sm">{location.title}</div>
                       <div className="text-xs text-white/70">{location.address}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-end gap-4">
+            <div className="flex flex-col gap-3">
               <Button 
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-white font-semibold min-w-[200px]"
+                size="default"
+                className="bg-accent hover:bg-accent/90 text-white font-semibold w-full md:w-auto"
                 asChild
               >
                 <a href="tel:+79890111000">
-                  <Icon name="Phone" className="mr-2" size={20} />
+                  <Icon name="Phone" className="mr-2" size={18} />
                   +7 989 0 111 000
                 </a>
               </Button>
-              <Button 
-                size="lg" 
-                className="bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold min-w-[200px]"
-                asChild
-              >
-                <a href="https://wa.me/79890111000" target="_blank" rel="noopener noreferrer">
-                  <Icon name="MessageCircle" className="mr-2" size={20} />
-                  WhatsApp
-                </a>
-              </Button>
-              <Button 
-                size="lg" 
-                className="bg-[#0088cc] hover:bg-[#006699] text-white font-semibold min-w-[200px]"
-                asChild
-              >
-                <a href="https://t.me/79890111000" target="_blank" rel="noopener noreferrer">
-                  <Icon name="Send" className="mr-2" size={20} />
-                  Telegram
-                </a>
-              </Button>
+              <div className="grid grid-cols-2 gap-3">
+                <Button 
+                  size="default"
+                  className="bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold"
+                  asChild
+                >
+                  <a href="https://wa.me/79890111000" target="_blank" rel="noopener noreferrer">
+                    <Icon name="MessageCircle" className="mr-2" size={18} />
+                    WhatsApp
+                  </a>
+                </Button>
+                <Button 
+                  size="default"
+                  className="bg-[#0088cc] hover:bg-[#006699] text-white font-semibold"
+                  asChild
+                >
+                  <a href="https://t.me/79890111000" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Send" className="mr-2" size={18} />
+                    Telegram
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
           <div className="border-t border-white/20 mt-8 pt-6 text-center text-sm text-white/70">
