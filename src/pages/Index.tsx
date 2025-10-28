@@ -60,21 +60,21 @@ const Index = () => {
             </Button>
           </div>
         </div>
-        <div className="bg-muted/30 border-t">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm">
+        <div className="bg-gradient-to-r from-muted/40 to-muted/20 border-t">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
               {addresses.map((location, index) => (
                 <a 
                   key={index}
                   href={`https://yandex.ru/maps/?text=${encodeURIComponent(location.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+                  className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-all group bg-white/60 px-4 py-2.5 rounded-lg shadow-sm hover:shadow-md"
                 >
-                  <Icon name="MapPin" size={16} className="flex-shrink-0 group-hover:text-accent" />
-                  <div className="text-center sm:text-left">
-                    <div className="font-medium text-foreground text-xs">{location.title}</div>
-                    <div className="text-xs">{location.address}</div>
+                  <Icon name="MapPin" size={18} className="flex-shrink-0 text-accent group-hover:scale-110 transition-transform" />
+                  <div className="text-left">
+                    <div className="font-semibold text-foreground text-sm">{location.title}</div>
+                    <div className="text-xs text-muted-foreground">{location.address}</div>
                   </div>
                 </a>
               ))}
@@ -199,28 +199,42 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-slate-700 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      <footer className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-700 text-white py-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDE2YzAgMi4yMDktMS43OTEgNC00IDRzLTQtMS43OTEtNC00IDEuNzkxLTQgNC00IDQgMS43OTEgNCA0em0tMTYgMGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHptMzIgMGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHpNNCAxNmMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHptNDggMGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHoiLz48L2c+PC9nPjwvc3ZnPg==')]" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <h3 className="text-2xl font-bold mb-4">
                 ООО "ПРОМСПЕЦЗАПЧАСТЬ"
               </h3>
-              <div className="space-y-2 text-white/90">
-                <p className="flex items-center gap-2">
-                  <Icon name="MapPin" size={18} />
-                  г. Краснодар, Плановый проезд, д. 9
-                </p>
-                <p className="flex items-center gap-2">
-                  <Icon name="Phone" size={18} />
-                  +7 989 0 111 000
-                </p>
+              <div className="space-y-3 text-white/90">
+                {addresses.map((location, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <Icon name="MapPin" size={16} className="flex-shrink-0 mt-0.5 text-accent" />
+                    <div>
+                      <div className="font-medium text-sm">{location.title}</div>
+                      <div className="text-xs text-white/70">{location.address}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 md:justify-end">
+            <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-end gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold"
+                className="bg-accent hover:bg-accent/90 text-white font-semibold min-w-[200px]"
+                asChild
+              >
+                <a href="tel:+79890111000">
+                  <Icon name="Phone" className="mr-2" size={20} />
+                  +7 989 0 111 000
+                </a>
+              </Button>
+              <Button 
+                size="lg" 
+                className="bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold min-w-[200px]"
                 asChild
               >
                 <a href="https://wa.me/79890111000" target="_blank" rel="noopener noreferrer">
@@ -230,7 +244,7 @@ const Index = () => {
               </Button>
               <Button 
                 size="lg" 
-                className="bg-[#0088cc] hover:bg-[#006699] text-white font-semibold"
+                className="bg-[#0088cc] hover:bg-[#006699] text-white font-semibold min-w-[200px]"
                 asChild
               >
                 <a href="https://t.me/79890111000" target="_blank" rel="noopener noreferrer">
