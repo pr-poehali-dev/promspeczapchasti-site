@@ -39,14 +39,29 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-center md:text-left">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div className="text-center lg:text-left">
               <h1 className="text-2xl md:text-3xl font-bold text-primary">
                 ООО "ПРОМСПЕЦЗАПЧАСТЬ"
               </h1>
               <p className="text-sm text-muted-foreground mt-1">
                 Поставка запчастей и ремонт спецтехники
               </p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 text-sm">
+              {addresses.map((location, index) => (
+                <a 
+                  key={index}
+                  href={`https://yandex.ru/maps/?text=${encodeURIComponent(location.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors group"
+                >
+                  <Icon name="MapPin" size={16} className="flex-shrink-0 group-hover:text-accent" />
+                  <span className="text-xs hidden xl:inline">{location.title}:</span>
+                  <span className="underline decoration-dotted">{location.address}</span>
+                </a>
+              ))}
             </div>
             <div className="flex items-center gap-3">
               <Button 
@@ -64,10 +79,17 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&h=900&fit=crop" 
+            alt="Экскаватор" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6 animate-fade-in backdrop-blur-sm bg-white/80 p-8 rounded-lg">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 Профессиональное обслуживание дорожно-строительной техники
               </h2>
@@ -90,7 +112,7 @@ const Index = () => {
             </div>
             
             <div className="relative">
-              <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
+              <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center backdrop-blur-sm bg-white/60">
                 <div className="text-center p-8">
                   <Icon name="Truck" size={120} className="text-primary/40 mx-auto mb-4" />
                   <p className="text-muted-foreground">
@@ -163,34 +185,37 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Наши адреса в Краснодаре
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {addresses.map((location, index) => (
-              <Card key={index} className="p-6 border-primary/20">
-                <Icon name="MapPin" className="text-accent mb-3" size={32} />
-                <h3 className="font-bold text-lg mb-2">{location.title}</h3>
-                <p className="text-muted-foreground text-sm">{location.address}</p>
-              </Card>
+              <a
+                key={index}
+                href={`https://yandex.ru/maps/?text=${encodeURIComponent(location.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Card className="p-6 border-primary/20 hover:border-primary hover:shadow-lg transition-all cursor-pointer h-full">
+                  <Icon name="MapPin" className="text-accent mb-3" size={32} />
+                  <h3 className="font-bold text-lg mb-2">{location.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-3">{location.address}</p>
+                  <div className="flex items-center gap-1 text-primary text-sm font-medium">
+                    <span>Открыть на карте</span>
+                    <Icon name="ExternalLink" size={14} />
+                  </div>
+                </Card>
+              </a>
             ))}
-          </div>
-          <div className="aspect-[16/9] bg-muted rounded-lg flex items-center justify-center border">
-            <div className="text-center p-8">
-              <Icon name="Map" size={64} className="text-muted-foreground/40 mx-auto mb-4" />
-              <p className="text-muted-foreground">
-                Интерактивная карта с локациями
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-primary text-primary-foreground py-12">
+      <footer className="bg-slate-700 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl font-bold mb-4">
                 ООО "ПРОМСПЕЦЗАПЧАСТЬ"
               </h3>
-              <div className="space-y-2 text-primary-foreground/90">
+              <div className="space-y-2 text-white/90">
                 <p className="flex items-center gap-2">
                   <Icon name="MapPin" size={18} />
                   г. Краснодар, Плановый проезд, д. 9
@@ -224,7 +249,7 @@ const Index = () => {
               </Button>
             </div>
           </div>
-          <div className="border-t border-primary-foreground/20 mt-8 pt-6 text-center text-sm text-primary-foreground/70">
+          <div className="border-t border-white/20 mt-8 pt-6 text-center text-sm text-white/70">
             <p>© {new Date().getFullYear()} ООО "ПРОМСПЕЦЗАПЧАСТЬ". Все права защищены.</p>
           </div>
         </div>
